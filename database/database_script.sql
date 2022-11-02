@@ -5,24 +5,25 @@ PRAGMA foreign_keys = ON;
 
 CREATE TABLE RUN_DETAILS (
 	FileName           TEXT NOT NULL,
-	FilePath           TEXT NOT NULL,
-	LoadNumber         TEXT NOT NULL,
-	Equipment          TEXT NOT NULL,
-	RunRecipe          TEXT NOT NULL,
-	RunStart           TEXT NOT NULL,
-	RunEnd             TEXT NOT NULL,
-	RunDuration        TEXT NOT NULL,
-	FileLength            TEXT NOT NULL,
-	OperatorName            TEXT NOT NULL,
-	ExportControl              TEXT NOT NULL,
+	FilePath           TEXT,
+	LoadNumber         TEXT,
+	Equipment          TEXT,
+	RunRecipe          TEXT,
+	RunStart           TEXT  ,
+	RunEnd             TEXT  ,
+	RunDuration        TEXT  ,
+	FileLength            TEXT  ,
+	OperatorName            TEXT  ,
+	ExportControl              TEXT  ,
+    IP                 TEXT  ,
     PRIMARY KEY (FileName)
 );
 
 CREATE TABLE PART_INFORMATION (
-    FileName           TEXT NOT NULL,
-    IndexNumber              INT NOT NULL,
-    WorkOrder          INT NOT NULL,
-    PartNumber         INT NOT NULL,
+    RunFileName           TEXT NOT NULL,
+    IndexNumber              INT  NOT NULL,
+    WorkOrder          INT  ,
+    PartNumber         INT  ,
     PartDescription    TEXT,
     ToolLocation       TEXT,
     Comment1           TEXT,
@@ -31,7 +32,7 @@ CREATE TABLE PART_INFORMATION (
     PartTCs            TEXT,
     PartProbes         TEXT,
     OtherSensors       TEXT,
-    PRIMARY KEY (Number)       
-    FOREIGN KEY (FileName) REFERENCES RUN_DETAILS(FileName)
+    PRIMARY KEY (IndexNumber)       
+    FOREIGN KEY (RunFileName) REFERENCES RUN_DETAILS(FileName)
 );
 

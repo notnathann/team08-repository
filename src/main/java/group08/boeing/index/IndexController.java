@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -49,17 +50,21 @@ public class IndexController {
 
         String fileName = (String)runDetails.get("FileName");
         String filePath = (String)runDetails.get("FilePath");
-        Integer loadNumber = (Integer)runDetails.get("LoadNumber");
-        String equipment = (String)runDetails.get("LoadNumber");
-        String runRecipe = (String)runDetails.get("LoadNumber");
-        String runStart = (String)runDetails.get("LoadNumber");
-        String runEnd = (String)runDetails.get("LoadNumber");
-        Float runDuration = (Float)runDetails.get("LoadNumber");
-        Integer fileLength = (Integer)runDetails.get("LoadNumber");
-        String operatorName = (String)runDetails.get("LoadNumber");
-        String exportControl = (String)runDetails.get("LoadNumber");
-        String ip = (String)runDetails.get("LoadNumber");
-        
+        Integer loadNumber = Integer.parseInt((String)runDetails.get("LoadNumber"));
+        String equipment = (String)runDetails.get("Equipment");
+        String runRecipe = (String)runDetails.get("RunRecipe");
+        String runStart = (String)runDetails.get("RunStart");
+        String runEnd = (String)runDetails.get("RunEnd");
+        Float runDuration = Float.parseFloat((String)runDetails.get("RunDuration"));
+        Integer fileLength = Integer.parseInt((String)runDetails.get("FileLength"));
+        String operatorName = (String)runDetails.get("OperatorName");
+        String exportControl = (String)runDetails.get("ExportControl");
+        String ip0 = (String)runDetails.get("IP0");
+        String ip1 = (String)runDetails.get("IP1");
+        String ip2 = (String)runDetails.get("IP2");
+        String ip3 = (String)runDetails.get("IP3");
+        String ip = ip0 + " " + ip1 + " " + ip2 + " " + ip3;
+
 
         // Connect to JDBC data base
         Connection connection = DriverManager.getConnection(DATABASE);
@@ -67,15 +72,64 @@ public class IndexController {
         // Prepare INSERT statement
         String sql = String.format("""
             INSERT into RUN_DETAILS VALUES (
-                %s, %s, %d, %s, %s, %s, %s, %f, %d, %s, %s, %s
+                \"%s\", \"%s\", %d, \"%s\", \"%s\", \"%s\", \"%s\", %f, %d, \"%s\", \"%s\", \"%s\"
             );""", 
-            fileName, filePath, INDIGENOUS_STATUS[indexStatus], 
-            SEX[indexSex], AGE_CATEGORY[indexCategory], count
+            fileName, filePath, loadNumber, equipment, runRecipe, runStart, runEnd, runDuration, fileLength, operatorName, exportControl, ip
         );
 
         // Execute INSERT statement
         Statement statement = connection.createStatement();
         System.out.println("Executing: " + sql);
-        statement.execute(sql);
+
+        try {
+            statement.execute(sql);
+        }
+        catch (SQLException e) {
+            
+        } finally {
+            connection.close();
+        }
+        
+        connection = DriverManager.getConnection(DATABASE);
+
+
+        for (int i = 0; i < partInformation.size(); i++) {
+            String indexNumber = (String)runDetails.get("Index");
+            Integer workOrder = Integer.parseInt((String)runDetails.get("WorkOrder"));
+            System.out.print(workOrder);
+            Integer partNumber = Integer.parseInt((String)runDetails.get("PartNumber"));
+            Integer partDescription = Integer.parseInt((String)runDetails.get("PartDescription"));
+            String toolLocation = (String)runDetails.get("ToolLocation");
+            String comment1 = (String)runDetails.get("Comment1");
+            String comment2 = (String)runDetails.get("Comment2");
+            String comment3 = (String)runDetails.get("Comment3");
+            ArrayList<String> partTCsList = (ArrayList<String>)runDetails.get("PartTCs");
+            String partTCs = "" + String.join(",", partTCsList);
+            ArrayList<String> partProbesList = (ArrayList<String>)runDetails.get("PartProbes");
+            String partProbes = "" + String.join(",", partProbesList);
+            ArrayList<String> otherSensorsList = (ArrayList<String>)runDetails.get("OtherSensors");
+            String otherSensors = "" + String.join(",", otherSensorsList);
+
+            // Prepare INSERT statement
+            sql = String.format("""
+                INSERT into PART_INFORMATION VALUES (
+                    \"%s\", \"%s\", %d, %d, %d, \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\"
+                );""", 
+                fileName, indexNumber, workOrder, partNumber, partDescription, toolLocation, comment1, comment2, comment3, partTCs, partProbes, otherSensors
+            );
+
+            // Execute INSERT statement
+            statement = connection.createStatement();
+            System.out.println("Executing: " + sql);
+
+            try {
+                statement.execute(sql);
+            }
+            catch (SQLException e) {
+                
+            } finally {
+                connection.close();
+        }
+          }
     };
 }
