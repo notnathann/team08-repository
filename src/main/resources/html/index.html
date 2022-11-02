@@ -30,9 +30,10 @@
 
         <section class="main">
             <div class="buttons container flex">
-                <form action="/upload">
+                <!-- <form id="upload-form" action="/upload" method="POST" enctype="multipart/form-data"> -->
+                <form id="upload-form">
                     <input class="btn" id="upload-btn" type="button" value="Upload" />
-                    <input type="file" id="upload-file">
+                    <input type="file" id="upload-file" accept=".json">
                 </form>
                 <form action="/search">
                     <input class="btn" type="submit" value="Search" />
