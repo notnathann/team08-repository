@@ -45,5 +45,6 @@ public class App {
     public static void configureRoutes(Javalin app) {
         // GET - Task 1.1
         app.get(IndexController.HTML_REQUEST, IndexController.servePage);
+        app.post(IndexController.JSON_POST_REQUEST, IndexController.parseJSON);
     }
 }
