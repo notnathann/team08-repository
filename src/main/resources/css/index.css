@@ -1,0 +1,26 @@
+/* Heading Section */
+
+.heading {
+    padding-top: 280px;
+}
+
+body {
+    background-color: var(--primary-background-color);
+    background-image: url(../plane_vector.png);
+    background-repeat: no-repeat;
+    background-position: 50% calc(50% - 50px);
+    background-size: 600px auto;
+}
+
+
+/* Buttons Section */
+
+.buttons {
+    height: 100px;
+    gap: 5%;
+    margin: 20px auto;
+}
+
+#upload-file {
+    display: none;
+}
