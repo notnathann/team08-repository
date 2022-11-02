@@ -20,7 +20,7 @@ CREATE TABLE RUN_DETAILS (
 
 CREATE TABLE PART_INFORMATION (
     FileName           TEXT NOT NULL,
-    Number              INT NOT NULL,
+    IndexNumber              INT NOT NULL,
     WorkOrder          INT NOT NULL,
     PartNumber         INT NOT NULL,
     PartDescription    TEXT,
