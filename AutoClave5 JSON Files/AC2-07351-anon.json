@@ -1,0 +1,67 @@
+{
+	"RunDetails":{
+		"FileName":"AC2-07351.DAT",
+		"FilePath":"\\\\server1\\AC2-DATA",
+		"LoadNumber":"7351",
+		"Equipment":"Autoclave #2",
+		"RunRecipe":"XB-Falcon-Body",
+		"RunStart":"2022-10-19T03:55:44",
+		"RunEnd":"2022-10-19T20:25:32",
+		"RunDuration":"989.80",
+		"FileLength":"190486",
+		"OperatorName":"raymond",
+		"ExportControl":"AU NSR",
+		"IP":"Boeing Proprietary",
+		"IP":"Copyright 2022 Boeing Aerostructures Australia",
+		"IP":"All Rights Reserved",
+		"IP":"Third Party Disclosure Requires Written Approval"},
+	"PartInformation":[{
+		"Index":1,
+		"WorkOrder":"3558123",
+		"PartNumber":"ACME-300",
+		"PartDescription":"L/H Headlight",
+		"ToolLocation":"BACK LWR",
+		"Comment1":"L=53",
+		"Comment2":"",
+		"Comment3":"",
+		"PartTCs":["TC35","TC36"],
+		"PartProbes":["MON51"],
+		"OtherSensors":[]
+	},{
+		"Index":2,
+		"WorkOrder":"3558124",
+		"PartNumber":"ACME-500",
+		"PartDescription":"R/H Headlight",
+		"ToolLocation":"FRONT BOTTOM",
+		"Comment1":"L=35",
+		"Comment2":"",
+		"Comment3":"",
+		"PartTCs":["TC13","TC14","TC15"],
+		"PartProbes":["MON11","MON12"],
+		"OtherSensors":[]
+	},{
+		"Index":3,
+		"WorkOrder":"3558125",
+		"PartNumber":"ACME-100",
+		"PartDescription":"Left Qtr Panel",
+		"ToolLocation":"BACK TOP",
+		"Comment1":"L=57",
+		"Comment2":"",
+		"Comment3":"",
+		"PartTCs":["TC9","TC10"],
+		"PartProbes":["MON44"],
+		"OtherSensors":[]
+	},{
+		"Index":4,
+		"WorkOrder":"3558126",
+		"PartNumber":"ACME-200",
+		"PartDescription":"Right Qtr Panel",
+		"ToolLocation":"TOP FRONT",
+		"Comment1":"L=30",
+		"Comment2":"",
+		"Comment3":"",
+		"PartTCs":["TC39","TC40","TC41"],
+		"PartProbes":["MON29","MON30"],
+		"OtherSensors":[]
+	}]
+}

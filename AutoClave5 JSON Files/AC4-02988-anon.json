@@ -1,0 +1,31 @@
+{
+	"RunDetails":{
+		"FileName":"AC4-02988.DAT",
+		"FilePath":"\\\\server1\\AC4-DATA",
+		"LoadNumber":"AC4 - 2502",
+		"Equipment":"Autoclave #4",
+		"RunRecipe":"ACME Car Seat Drying",
+		"RunStart":"2018-10-23T18:25:51",
+		"RunEnd":"2018-10-24T03:54:10",
+		"RunDuration":"568.32",
+		"FileLength":"139915",
+		"OperatorName":"Pete",
+		"ExportControl":"AU NSR",
+		"IP":"Boeing Proprietary",
+		"IP":"Copyright 2022 Boeing Aerostructures Australia",
+		"IP":"All Rights Reserved",
+		"IP":"Third Party Disclosure Requires Written Approval"},
+	"PartInformation":[{
+		"Index":1,
+		"WorkOrder":"RDRN01",
+		"PartNumber":"ACME-600",
+		"PartDescription":"Seat Frame",
+		"ToolLocation":"",
+		"Comment1":"",
+		"Comment2":"",
+		"Comment3":"",
+		"PartTCs":["TC1","TC2","TC3","TC4"],
+		"PartProbes":["MON1"],
+		"OtherSensors":[]
+	}]
+}

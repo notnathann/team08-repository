@@ -1,0 +1,43 @@
+{
+	"RunDetails":{
+		"FileName":"AC2-07339.DAT",
+		"FilePath":"\\\\server1\\AC2-DATA",
+		"LoadNumber":"7339",
+		"Equipment":"Autoclave #2",
+		"RunRecipe":"XB-Falcon-Body",
+		"RunStart":"2022-10-10T09:38:21",
+		"RunEnd":"2022-10-10T23:56:02",
+		"RunDuration":"857.68",
+		"FileLength":"164029",
+		"OperatorName":"Steve",
+		"ExportControl":"AU NSR",
+		"IP":"Boeing Proprietary",
+		"IP":"Copyright 2022 Boeing Aerostructures Australia",
+		"IP":"All Rights Reserved",
+		"IP":"Third Party Disclosure Requires Written Approval"},
+	"PartInformation":[{
+		"Index":1,
+		"WorkOrder":"3458133",
+		"PartNumber":"ACME-500",
+		"PartDescription":"R/H Headlight",
+		"ToolLocation":"FRONT",
+		"Comment1":"L=38",
+		"Comment2":"",
+		"Comment3":"",
+		"PartTCs":["TC18","TC19","TC20"],
+		"PartProbes":["MON12","MON45"],
+		"OtherSensors":[]
+	},{
+		"Index":2,
+		"WorkOrder":"3458134",
+		"PartNumber":"ACME-300",
+		"PartDescription":"L/H Headlight",
+		"ToolLocation":"BACK",
+		"Comment1":"L=53",
+		"Comment2":"",
+		"Comment3":"",
+		"PartTCs":["TC35","TC36"],
+		"PartProbes":["MON51"],
+		"OtherSensors":[]
+	}]
+}

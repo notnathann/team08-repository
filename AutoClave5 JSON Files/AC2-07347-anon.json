@@ -1,0 +1,43 @@
+{
+	"RunDetails":{
+		"FileName":"AC2-07347.DAT",
+		"FilePath":"\\\\server1\\AC2-DATA",
+		"LoadNumber":"7347",
+		"Equipment":"Autoclave #2",
+		"RunRecipe":"XB-Falcon-Body",
+		"RunStart":"2022-10-17T02:33:01",
+		"RunEnd":"2022-10-17T22:55:12",
+		"RunDuration":"1222.18",
+		"FileLength":"158669",
+		"OperatorName":"raymond",
+		"ExportControl":"AU NSR",
+		"IP":"Boeing Proprietary",
+		"IP":"Copyright 2022 Boeing Aerostructures Australia",
+		"IP":"All Rights Reserved",
+		"IP":"Third Party Disclosure Requires Written Approval"},
+	"PartInformation":[{
+		"Index":1,
+		"WorkOrder":"3458322",
+		"PartNumber":"ACME-100",
+		"PartDescription":"Left Qtr Panel",
+		"ToolLocation":"BACK",
+		"Comment1":"L=58",
+		"Comment2":"",
+		"Comment3":"",
+		"PartTCs":["TC9","TC10"],
+		"PartProbes":["MON45"],
+		"OtherSensors":[]
+	},{
+		"Index":2,
+		"WorkOrder":"3458333",
+		"PartNumber":"ACME-200",
+		"PartDescription":"Right Qtr Panel",
+		"ToolLocation":"FRONT",
+		"Comment1":"L=35",
+		"Comment2":"",
+		"Comment3":"",
+		"PartTCs":["TC31","TC32","TC33"],
+		"PartProbes":["MON30","MON50"],
+		"OtherSensors":[]
+	}]
+}

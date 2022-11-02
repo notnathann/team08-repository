@@ -1,0 +1,31 @@
+{
+	"RunDetails":{
+		"FileName":"AC4-02979.DAT",
+		"FilePath":"\\\\server1\\AC4-DATA",
+		"LoadNumber":"AC4 - 2493",
+		"Equipment":"Autoclave #4",
+		"RunRecipe":"ACME Drying Cure",
+		"RunStart":"2018-09-11T11:37:43",
+		"RunEnd":"2018-09-12T21:58:59",
+		"RunDuration":"2061.27",
+		"FileLength":"264603",
+		"OperatorName":"Pete",
+		"ExportControl":"AU NSR",
+		"IP":"Boeing Proprietary",
+		"IP":"Copyright 2022 Boeing Aerostructures Australia",
+		"IP":"All Rights Reserved",
+		"IP":"Third Party Disclosure Requires Written Approval"},
+	"PartInformation":[{
+		"Index":1,
+		"WorkOrder":"RDRN01",
+		"PartNumber":"ACME-900",
+		"PartDescription":"Blinker",
+		"ToolLocation":"",
+		"Comment1":"",
+		"Comment2":"",
+		"Comment3":"",
+		"PartTCs":["TC1","TC2"],
+		"PartProbes":[],
+		"OtherSensors":[]
+	}]
+}
