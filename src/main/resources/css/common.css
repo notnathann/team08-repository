@@ -37,7 +37,12 @@ h1 {
     font-weight: 800;
     font-size: 80px;
     text-align: center;
-    /* color: var(--accent-color); */
+}
+
+h2 {
+    font-weight: 800;
+    font-size: 50px;
+    text-align: center;
 }
 
 p {

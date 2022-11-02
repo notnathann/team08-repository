@@ -221,3 +221,66 @@
 .btn {
     width: 220px
 }
+
+/* Modal Overlay */
+
+@keyframes modal-overlay-fadein {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+}
+
+.modal-overlay-opacity-anim {
+    animation: modal-overlay-fadein linear 0.2s forwards !important;
+}
+
+.modal-overlay {
+    /* pointer-events: none; */
+    display: none;
+    opacity: 0;
+    background: rgb(0 0 0);
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+}
+
+/* Modal */
+
+@keyframes modal-fadein {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.modal-opacity-anim {
+    animation: modal-fadein linear 0.2s forwards !important;
+}
+
+.results-modal {
+    display: none;
+    opacity: 0;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(black, 0.2);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, calc(-50% - 55px));
+    width: 800px;
+    height: 500px;
+    padding: 10px;
+}
+
+.results-modal h2 {
+    color: black;
+}
