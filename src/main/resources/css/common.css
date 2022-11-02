@@ -66,6 +66,11 @@ a {
     height: 100%;
 }
 
+.grid {
+    display: grid;
+    height: 100%;
+}
+
 /* Button */
 
 .btn {
@@ -80,4 +85,47 @@ a {
     text-transform: uppercase;
     box-shadow: 0px 2px 6px var(--shadow-color);
     border: none;
+    cursor: pointer;
+}
+
+/* Animations */
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100vw);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100vw);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromTop {
+    0% {
+        transform: translateY(-100vh);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromBottom {
+    0% {
+        transform: translateY(100vh);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
 }

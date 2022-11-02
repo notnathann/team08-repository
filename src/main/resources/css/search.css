@@ -1,0 +1,223 @@
+/* Navigation */
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100vw) scaleX(-1) rotate(15deg);
+    }
+
+    100% {
+        transform: translateX(0) scaleX(-1) rotate(15deg);
+    }
+}
+
+.nav img {
+    position: absolute;
+    width: 150px;
+    left: 30px;
+    top: 30px;
+    transform: scaleX(-1) rotate(15deg);
+    animation: slideInFromRight 2s ease-out;
+    cursor: pointer;
+}
+
+/* Heading */
+
+.heading {
+    padding-top: 150px;
+}
+
+/* Options */
+
+.options {
+    padding: 35px;
+    background-color: var(--options-container-color);
+    box-shadow: 0 0 6px var(--shadow-color-light);
+    border-radius: 10px;
+    grid-row-gap: 17px;
+    grid-column-gap: 17px;
+    grid-template-columns: repeat(2, 1fr);
+    /* animation: slideInFromLeft 0.8s ease-in-out; */
+}
+
+.options-grid-item.flex {
+    justify-content: flex-start;
+    column-gap: 17px;
+}
+
+.options-grid-item#operator-name {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.options-grid-item#load-number {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.options-grid-item#equipment {
+    grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.options-grid-item#run-recipe {
+    grid-row-start: 4;
+    grid-row-end: 5;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+/* Checkbox */
+
+.checkbox {
+    position: relative;
+    width: 65px;
+    height: 100%;
+    cursor: pointer;
+    background-color: var(--checkbox-background-color);
+    border: 3px solid var(--option-color);
+    border-radius: 7px;
+}
+
+.checkbox:hover {
+    background-color: var(--checkbox-hover-color);
+}
+
+.checkbox.checked {
+    background-color: var(--option-color);
+}
+
+.checkbox.checked .checkmark {
+    display: block;
+}
+
+.checkmark {
+    position: absolute;
+    left: 22px;
+    top: 12px;
+    width: 16px;
+    height: 32px;
+    border: solid var(--primary-color);
+    border-width: 0 6px 6px 0;
+    transform: rotate(45deg);
+    display: none;
+}
+
+/* Search */
+
+.search {
+    /* So that we can absolutely position the search-content */
+    position: relative;
+    border-radius: 7px;
+    width: 100%;
+}
+
+.search-field-container {
+    /* So that we can absolutely position the search icon */
+    position: relative;
+}
+
+.search-field {
+    width: 100%;
+    height: 65px;
+    border: none;
+    outline: none;
+    padding: 0 30px;
+    font-family: var(--primary-font-family);
+    font-size: 23px;
+    font-weight: 700;
+    color: var(--primary-color);
+    background-color: var(--search-color);
+    box-shadow: 0px 4px 6px #00000040;
+    /* box-shadow: 1px 2px 6px var(--shadow-color); */
+    border-radius: 7px;
+}
+
+.search-field::placeholder {
+    color: var(--primary-color);
+}
+
+.search-field:focus::placeholder {
+    color: transparent;
+}
+
+.search-field::-webkit-search-decoration,
+.search-field::-webkit-search-cancel-button,
+.search-field::-webkit-search-results-button,
+.search-field::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+}
+
+.search img {
+    width: 25px;
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    transform: translateY(-50%);
+}
+
+.search-content {
+    position: absolute;
+    top: 75px;
+    width: 100%;
+    border-radius: 7px;
+    background-color: var(--option-color);
+    z-index: 10;
+    cursor: default;
+
+    /* Hide by default */
+    display: none;
+}
+
+.search-content:after {
+    content: "";
+    position: absolute;
+    bottom: -35px;
+    height: 35px;
+    width: 100%;
+}
+
+.search-content p {
+    font-weight: 400;
+    padding: 7px 30px;
+    font-family: var(--primary-font-family);
+    font-size: 20px;
+    margin: 0;
+}
+
+.search-content p:first-of-type {
+    padding-top: 12px;
+}
+
+.search-content p:last-of-type {
+    padding-bottom: 12px;
+}
+
+.search-content p:hover {
+    background-color: var(--option-hover-color);
+}
+
+.search-content p:hover:first-of-type {
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+
+.search-content p:hover:last-of-type {
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+/* Search Button */
+
+.search-button {
+    margin: 20px auto;
+}
+
+.btn {
+    width: 220px
+}

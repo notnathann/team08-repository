@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All LGA Gap Scores</title>
+    <!-- Load stylesheet -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/common.css">
+    <link rel="stylesheet" href="/search.css">
+    <!-- Load jQuery -->
+    <script src="/jquery/jquery-3.6.0.min.js"></script>
+    <!-- Load Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Connect elements -->
+</head>
+
+<body>
+    <main>
+        <section class="nav">
+            <div class="container">
+                <a class="header-home" href="/">
+                    <img id="back-btn" src="/plane_vector.png" alt="Back Button">
+                </a>
+            </div>
+        </section>
+
+        <section class="heading">
+            <div class="container">
+                <h1>Search Database</h1>
+            </div>
+        </section>
+
+        <section class="options container grid">
+            <div class="options-grid-item flex" id="operator-name">
+                <div class="checkbox" th:attr="data-value=${operator-name}">
+                    <div class="checkmark"></div>
+                </div>
+
+                <div class="search" data-value="" data-metadata="" th:attr="data-request=${operator-name-search-request-url}">
+                    <div class="search-field-container">
+                        <input class="search-field" type="search" placeholder="Search Operator Name...">
+                        <img src="/search_icon.svg" alt="Search Field Icon">
+                    </div>
+
+                    <div class="search-content"></div>
+                </div>
+            </div>
+
+            <div class="options-grid-item flex" id="load-number">
+                <div class="checkbox" th:attr="data-value=${load-number}">
+                    <div class="checkmark"></div>
+                </div>
+
+                <div class="search" data-value="" data-metadata="" th:attr="data-request=${load-number-search-request-url}">
+                    <div class="search-field-container">
+                        <input class="search-field" type="search" placeholder="Search Load Number...">
+                        <img src="/search_icon.svg" alt="Search Field Icon">
+                    </div>
+
+                    <div class="search-content"></div>
+                </div>
+            </div>
+
+            <div class="options-grid-item flex" id="equipment">
+                <div class="checkbox" th:attr="data-value=${equipment}">
+                    <div class="checkmark"></div>
+                </div>
+
+                <div class="search" data-value="" data-metadata="" th:attr="data-request=${equipment-search-request-url}">
+                    <div class="search-field-container">
+                        <input class="search-field" type="search" placeholder="Search Equipment...">
+                        <img src="/search_icon.svg" alt="Search Field Icon">
+                    </div>
+
+                    <div class="search-content"></div>
+                </div>
+            </div>
+
+            <div class="options-grid-item flex" id="run-recipe">
+                <div class="checkbox" th:attr="data-value=${run-recipe}">
+                    <div class="checkmark"></div>
+                </div>
+
+                <div class="search" data-value="" data-metadata="" th:attr="data-request=${run-recipe-search-request-url}">
+                    <div class="search-field-container">
+                        <input class="search-field" type="search" placeholder="Search Run Recipe...">
+                        <img src="/search_icon.svg" alt="Search Field Icon">
+                    </div>
+
+                    <div class="search-content"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="search-button">
+            <div class="container flex">
+                <input class="btn" type="button" value="Search" />
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

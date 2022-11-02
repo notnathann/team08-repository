@@ -4,6 +4,7 @@ import io.javalin.Javalin;
 import io.javalin.core.util.RouteOverviewPlugin;
 
 import group08.boeing.index.IndexController;
+import group08.boeing.search.SearchController;
 
 /**
  * Main Application Class.
@@ -17,8 +18,7 @@ public class App {
     public static final String CSS_DIR = "css/";
     public static final String GRAPHICS_DIR = "graphics/";
     public static final String HTML_DIR = "html/";
-    // public static final String ICONS_DIR = "icons/";
-    // public static final String IMAGES_DIR = "images/";
+    public static final String ICONS_DIR = "icons/";
     public static final String JS_DIR = "js/";
     public static final String VENDOR_DIR = "vendor/";
 
@@ -31,8 +31,7 @@ public class App {
             config.addStaticFiles(CSS_DIR);
             config.addStaticFiles(GRAPHICS_DIR);
             config.addStaticFiles(HTML_DIR);
-            // config.addStaticFiles(ICONS_DIR);
-            // config.addStaticFiles(IMAGES_DIR);
+            config.addStaticFiles(ICONS_DIR);
             config.addStaticFiles(JS_DIR);
             config.addStaticFiles(VENDOR_DIR);
 
@@ -43,8 +42,13 @@ public class App {
     }
 
     public static void configureRoutes(Javalin app) {
-        // GET - Task 1.1
+        // GET - Index
         app.get(IndexController.HTML_REQUEST, IndexController.servePage);
+
+        // GET - Search
+        app.get(SearchController.HTML_REQUEST, SearchController.servePage);
+
+        // POST - Index
         app.post(IndexController.JSON_POST_REQUEST, IndexController.parseJSON);
     }
 }
