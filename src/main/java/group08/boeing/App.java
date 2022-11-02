@@ -48,6 +48,11 @@ public class App {
         // GET - Search
         app.get(SearchController.HTML_REQUEST, SearchController.servePage);
 
+        app.get(SearchController.OPERATOR_NAME_SEARCH_REQUEST, SearchController.fetchMatchingOperatorNames);
+        app.get(SearchController.LOAD_NUMBER_SEARCH_REQUEST, SearchController.fetchMatchingLoadNumbers);
+        app.get(SearchController.EQUIPMENT_SEARCH_REQUEST, SearchController.fetchMatchingEquipment);
+        app.get(SearchController.RUN_RECIPE_SEARCH_REQUEST, SearchController.fetchMatchingRunRecipes);
+
         // POST - Index
         app.post(IndexController.JSON_POST_REQUEST, IndexController.parseJSON);
     }

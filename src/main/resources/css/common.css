@@ -76,6 +76,22 @@ a {
     height: 100%;
 }
 
+.mandatory {
+    box-shadow: 0 0 0 1px var(--accent-color);
+}
+
+.mandatory:after {
+    content: "Required";
+    position: absolute;
+    top: 50%;
+    right: 70px;
+    transform: translateY(-50%);
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--accent-color);
+}
+
 /* Button */
 
 .btn {

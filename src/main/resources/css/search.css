@@ -23,7 +23,7 @@
 /* Heading */
 
 .heading {
-    padding-top: 150px;
+    padding-top: 120px;
 }
 
 /* Options */
@@ -269,7 +269,7 @@
 .results-modal {
     display: none;
     opacity: 0;
-    background: #ffffff;
+    background: var(--primary-color);
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(black, 0.2);
     position: absolute;
@@ -282,5 +282,5 @@
 }
 
 .results-modal h2 {
-    color: black;
+    color: var(--primary-background-color);
 }
