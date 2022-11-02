@@ -23,7 +23,7 @@ CREATE TABLE PART_INFORMATION (
     RunFileName           TEXT NOT NULL,
     IndexNumber              INT  NOT NULL,
     WorkOrder          INT  ,
-    PartNumber         INT  ,
+    PartNumber         TEXT  ,
     PartDescription    TEXT,
     ToolLocation       TEXT,
     Comment1           TEXT,

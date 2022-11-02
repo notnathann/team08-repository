@@ -46,7 +46,7 @@ public class IndexController {
 
         // Split HashMap into runDetails and partInformation
         Map<String, Object> runDetails = (Map<String, Object>)mapping.get("RunDetails");
-        ArrayList<Map<String, Object>> partInformation = (ArrayList<Map<String, Object>>)mapping.get("PartInformation");
+        ArrayList<Map<String, Object>> partInformationList = (ArrayList<Map<String, Object>>)mapping.get("PartInformation");
 
         String fileName = (String)runDetails.get("FileName");
         String filePath = (String)runDetails.get("FilePath");
@@ -64,7 +64,6 @@ public class IndexController {
         String ip2 = (String)runDetails.get("IP2");
         String ip3 = (String)runDetails.get("IP3");
         String ip = ip0 + " " + ip1 + " " + ip2 + " " + ip3;
-
 
         // Connect to JDBC data base
         Connection connection = DriverManager.getConnection(DATABASE);
@@ -85,35 +84,31 @@ public class IndexController {
             statement.execute(sql);
         }
         catch (SQLException e) {
-            
-        } finally {
-            connection.close();
+            // Likely data already exists in database, just ignore
         }
-        
-        connection = DriverManager.getConnection(DATABASE);
 
+        for (int i = 0; i < partInformationList.size(); i++) {
+            Map<String, Object> partInformation = partInformationList.get(i);
 
-        for (int i = 0; i < partInformation.size(); i++) {
-            String indexNumber = (String)runDetails.get("Index");
-            Integer workOrder = Integer.parseInt((String)runDetails.get("WorkOrder"));
-            System.out.print(workOrder);
-            Integer partNumber = Integer.parseInt((String)runDetails.get("PartNumber"));
-            Integer partDescription = Integer.parseInt((String)runDetails.get("PartDescription"));
-            String toolLocation = (String)runDetails.get("ToolLocation");
-            String comment1 = (String)runDetails.get("Comment1");
-            String comment2 = (String)runDetails.get("Comment2");
-            String comment3 = (String)runDetails.get("Comment3");
-            ArrayList<String> partTCsList = (ArrayList<String>)runDetails.get("PartTCs");
-            String partTCs = "" + String.join(",", partTCsList);
-            ArrayList<String> partProbesList = (ArrayList<String>)runDetails.get("PartProbes");
-            String partProbes = "" + String.join(",", partProbesList);
-            ArrayList<String> otherSensorsList = (ArrayList<String>)runDetails.get("OtherSensors");
-            String otherSensors = "" + String.join(",", otherSensorsList);
+            Integer indexNumber = (Integer)partInformation.get("Index");
+            Integer workOrder = Integer.parseInt((String)partInformation.get("WorkOrder"));
+            String partNumber = (String)partInformation.get("PartNumber");
+            String partDescription = (String)partInformation.get("PartDescription");
+            String toolLocation = (String)partInformation.get("ToolLocation");
+            String comment1 = (String)partInformation.get("Comment1");
+            String comment2 = (String)partInformation.get("Comment2");
+            String comment3 = (String)partInformation.get("Comment3");
+            ArrayList<String> partTCsList = (ArrayList<String>)partInformation.get("PartTCs");
+            String partTCs = String.join(",", partTCsList);
+            ArrayList<String> partProbesList = (ArrayList<String>)partInformation.get("PartProbes");
+            String partProbes = String.join(",", partProbesList);
+            ArrayList<String> otherSensorsList = (ArrayList<String>)partInformation.get("OtherSensors");
+            String otherSensors = String.join(",", otherSensorsList);
 
             // Prepare INSERT statement
             sql = String.format("""
                 INSERT into PART_INFORMATION VALUES (
-                    \"%s\", \"%s\", %d, %d, %d, \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\"
+                    \"%s\", %d, %d, \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\"
                 );""", 
                 fileName, indexNumber, workOrder, partNumber, partDescription, toolLocation, comment1, comment2, comment3, partTCs, partProbes, otherSensors
             );
@@ -126,10 +121,10 @@ public class IndexController {
                 statement.execute(sql);
             }
             catch (SQLException e) {
-                
-            } finally {
-                connection.close();
+                // Likely data already exists in database, just ignore
+            }
         }
-          }
+
+        connection.close();
     };
 }
