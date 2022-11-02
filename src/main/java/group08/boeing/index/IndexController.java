@@ -4,11 +4,7 @@ import io.javalin.http.Handler;
 import java.util.Map;
 import java.util.HashMap;
 
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import group08.boeing.util.FileUtil;
 
 public class IndexController {
     public static final String HTML_REQUEST = "/";
@@ -25,7 +21,9 @@ public class IndexController {
     };
 
     public static Handler parseJSON = ctx -> {
-        String str = ctx.body();
-        System.out.println(ctx.body());
+        String jsonStr = ctx.body();
+        Map<String, Object> mapping = new ObjectMapper().readValue(jsonStr, HashMap.class);
+        Map<String, Object> runDetails = (Map<String, Object>)mapping.get("RunDetails");
+        System.out.println(runDetails.get("FileName"));
     };
 }
