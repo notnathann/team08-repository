@@ -2,6 +2,7 @@ package group08.boeing.index;
 
 import io.javalin.http.Handler;
 import java.util.Map;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -27,20 +28,43 @@ public class IndexController {
     };
 
     public static Handler parseJSON = ctx -> {
+        // Retrieve Contents of JSON file
         String jsonStr = ctx.body();
+
+        for (int i = 0; i < jsonStr.length(); i++) {
+            System.out.println(i);
+          }
+
+        // Create HashMap from String
         Map<String, Object> mapping = new ObjectMapper().readValue(jsonStr, HashMap.class);
+
+        // Split HashMap into runDetails and partInformation
         Map<String, Object> runDetails = (Map<String, Object>)mapping.get("RunDetails");
-        System.out.println(runDetails.get("FileName"));
+        ArrayList<Map<String, Object>> partInformation = (ArrayList<Map<String, Object>>)mapping.get("PartInformation");
+
+        String fileName = (String)runDetails.get("FileName");
+        String filePath = (String)runDetails.get("FilePath");
+        Integer loadNumber = (Integer)runDetails.get("LoadNumber");
+        String equipment = (String)runDetails.get("LoadNumber");
+        String runRecipe = (String)runDetails.get("LoadNumber");
+        String runStart = (String)runDetails.get("LoadNumber");
+        String runEnd = (String)runDetails.get("LoadNumber");
+        Float runDuration = (Float)runDetails.get("LoadNumber");
+        Integer fileLength = (Integer)runDetails.get("LoadNumber");
+        String operatorName = (String)runDetails.get("LoadNumber");
+        String exportControl = (String)runDetails.get("LoadNumber");
+        String ip = (String)runDetails.get("LoadNumber");
+        
 
         // Connect to JDBC data base
         Connection connection = DriverManager.getConnection(DATABASE);
 
         // Prepare INSERT statement
         String sql = String.format("""
-            INSERT into LGA_Age_Base VALUES (
-                %d, %d, \"%s\", \"%s\", \"%s\", %d
+            INSERT into RUN_DETAILS VALUES (
+                %s, %s, %d, %s, %s, %s, %s, %f, %d, %s, %s, %s
             );""", 
-            lgaCode, CENSUS_YEAR, INDIGENOUS_STATUS[indexStatus], 
+            fileName, filePath, INDIGENOUS_STATUS[indexStatus], 
             SEX[indexSex], AGE_CATEGORY[indexCategory], count
         );
 
