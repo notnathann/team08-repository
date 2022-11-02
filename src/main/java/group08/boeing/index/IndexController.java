@@ -31,9 +31,14 @@ public class IndexController {
         // Retrieve Contents of JSON file
         String jsonStr = ctx.body();
 
-        for (int i = 0; i < jsonStr.length(); i++) {
-            System.out.println(i);
-          }
+        int ctr = 0;
+        int index = jsonStr.indexOf("IP");
+        while (index >= 0) {
+            jsonStr = jsonStr.substring(0, index) + "IP" + ctr + jsonStr.substring(index + 2, jsonStr.length());
+            index = jsonStr.indexOf("IP", index + 1);
+            ctr = ctr + 1;
+        }
+        System.out.println(jsonStr);
 
         // Create HashMap from String
         Map<String, Object> mapping = new ObjectMapper().readValue(jsonStr, HashMap.class);
