@@ -14,9 +14,12 @@ $(document).ready(function () {
         }
 
         // Read the file
-        let reader = new FileReader();
-        reader.onload = postJSON;
-        reader.readAsText(file.files[0]);
+        var files = file.files
+        for (i = 0 ; i < files.length ; i++) {
+            let reader = new FileReader();
+            reader.onload = postJSON;
+            reader.readAsText(file.files[i]);
+        }
     };
 });
 

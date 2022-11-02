@@ -50,7 +50,7 @@ public class IndexController {
 
         String fileName = (String)runDetails.get("FileName");
         String filePath = (String)runDetails.get("FilePath");
-        Integer loadNumber = Integer.parseInt((String)runDetails.get("LoadNumber"));
+        String loadNumber = (String)runDetails.get("LoadNumber");
         String equipment = (String)runDetails.get("Equipment");
         String runRecipe = (String)runDetails.get("RunRecipe");
         String runStart = (String)runDetails.get("RunStart");
@@ -71,7 +71,7 @@ public class IndexController {
         // Prepare INSERT statement
         String sql = String.format("""
             INSERT into RUN_DETAILS VALUES (
-                \"%s\", \"%s\", %d, \"%s\", \"%s\", \"%s\", \"%s\", %f, %d, \"%s\", \"%s\", \"%s\"
+                \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", %f, %d, \"%s\", \"%s\", \"%s\"
             );""", 
             fileName, filePath, loadNumber, equipment, runRecipe, runStart, runEnd, runDuration, fileLength, operatorName, exportControl, ip
         );
@@ -91,7 +91,7 @@ public class IndexController {
             Map<String, Object> partInformation = partInformationList.get(i);
 
             Integer indexNumber = (Integer)partInformation.get("Index");
-            Integer workOrder = Integer.parseInt((String)partInformation.get("WorkOrder"));
+            String workOrder = (String)partInformation.get("WorkOrder");
             String partNumber = (String)partInformation.get("PartNumber");
             String partDescription = (String)partInformation.get("PartDescription");
             String toolLocation = (String)partInformation.get("ToolLocation");
@@ -108,7 +108,7 @@ public class IndexController {
             // Prepare INSERT statement
             sql = String.format("""
                 INSERT into PART_INFORMATION VALUES (
-                    \"%s\", %d, %d, \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\"
+                    \"%s\", %d, \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\"
                 );""", 
                 fileName, indexNumber, workOrder, partNumber, partDescription, toolLocation, comment1, comment2, comment3, partTCs, partProbes, otherSensors
             );

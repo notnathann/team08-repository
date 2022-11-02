@@ -12,18 +12,18 @@ CREATE TABLE RUN_DETAILS (
 	RunStart           TEXT  ,
 	RunEnd             TEXT  ,
 	RunDuration        TEXT  ,
-	FileLength            TEXT  ,
-	OperatorName            TEXT  ,
-	ExportControl              TEXT  ,
+	FileLength         TEXT  ,
+	OperatorName       TEXT  ,
+	ExportControl      TEXT  ,
     IP                 TEXT  ,
     PRIMARY KEY (FileName)
 );
 
 CREATE TABLE PART_INFORMATION (
-    RunFileName           TEXT NOT NULL,
-    IndexNumber              INT  NOT NULL,
-    WorkOrder          INT  ,
-    PartNumber         TEXT  ,
+    RunFileName        TEXT NOT NULL,
+    IndexNumber        INT  NOT NULL,
+    WorkOrder          TEXT,
+    PartNumber         TEXT,
     PartDescription    TEXT,
     ToolLocation       TEXT,
     Comment1           TEXT,
@@ -32,7 +32,7 @@ CREATE TABLE PART_INFORMATION (
     PartTCs            TEXT,
     PartProbes         TEXT,
     OtherSensors       TEXT,
-    PRIMARY KEY (IndexNumber)       
+    PRIMARY KEY (RunFileName, IndexNumber)       
     FOREIGN KEY (RunFileName) REFERENCES RUN_DETAILS(FileName)
 );
 
