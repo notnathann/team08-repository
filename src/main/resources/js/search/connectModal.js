@@ -6,9 +6,25 @@ $(document).ready(function () {
     modal_overlay.click(hideResults);
 });
 
+function getRequestURL() {
+    const isOperatorNameChecked = $('#operator-name .checkbox').hasClass("checked");
+    const isLoadNumberChecked = $('#load-number .checkbox');
+    const isEquipmentChecked = $('#equipment .checkbox');
+    const isRunRecipeChecked = $('#run-recipe .checkbox');
+
+    let url = "/searchData";
+    url += "/" + ((isOperatorNameChecked ? $("#operator-name .search").attr("data-value") : "null") || "null");
+    url += "/" + ((isLoadNumberChecked ? $("#load-number .search").attr("data-value") : "null") || "null");
+    url += "/" + ((isEquipmentChecked ? $("#equipment .search").attr("data-value") : "null") || "null");
+    url += "/" + ((isRunRecipeChecked ? $("#run-recipe .search").attr("data-value") : "null") || "null");
+
+    return url;
+}
+
 function showResults() {
     const modal_overlay = $('.modal-overlay');
     const modal = $('.results-modal');
+    const modal_contents = $('.results-modal-contents');
 
     const checkbox_operatorName = $('#operator-name .checkbox');
     const checkbox_loadNumber = $('#load-number .checkbox');
@@ -51,6 +67,31 @@ function showResults() {
     if (!operatorNameChecked && !loadNumberChecked && !equipmentChecked && !runRecipeChecked) {
         return;
     }
+
+    $.ajax({
+        method: 'GET',
+        url: getRequestURL(),
+        dataType: 'json'
+    }).done(function (data) {
+        console.log(data);
+
+        modal_contents.empty();
+
+        if (!data.values) {
+            return;
+        }
+
+        for (var i = 0; i < data.values.length; i++) {
+            let searchResultTemplate = $("#modal-link-template");
+            let searchResultTemplateFragment = searchResultTemplate[0].content;
+            let searchResultDiv = searchResultTemplateFragment.cloneNode(true).children[0];
+            let searchResultAnchor = searchResultDiv.children[0];
+            $(searchResultAnchor).text(data.values[i]["fileName"]);
+            $(searchResultAnchor).attr("data-value", JSON.stringify(data.values[i]));
+            modal_contents.append(searchResultDiv);
+            localStorage.setItem("data", JSON.stringify(data.values[i]))
+        }
+    });
 
     modal_overlay.css('display', 'block');
     modal_overlay.addClass("modal-overlay-opacity-anim");

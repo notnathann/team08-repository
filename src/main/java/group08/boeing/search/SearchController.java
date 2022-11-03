@@ -25,6 +25,8 @@ public class SearchController {
     public static final String EQUIPMENT_SEARCH_REQUEST_URL = "/search/equipmentSearch/";
     public static final String RUN_RECIPE_SEARCH_REQUEST_URL = "/search/runRecipeSearch/";
 
+    public static final String DATA_REQUEST = "/searchData/:operatorName/:loadNumber/:equipment/:runRecipe";
+
     // Implement Handler functional interface with lambda expression (acts as override for `handle` abstract method)
     public static Handler servePage = ctx -> {
         // String headerHtml = FileUtil.readFile(RESOURCE_HEADER_HTML_FILE_PATH);
@@ -37,6 +39,49 @@ public class SearchController {
         model.put("runRecipeRequest", RUN_RECIPE_SEARCH_REQUEST_URL);
         
         ctx.render(TARGET_HTML_FILE_PATH, model);
+    };
+
+    public static Handler fetchData = ctx -> {
+        String operatorName = ctx.pathParam("operatorName");
+        String loadNumber = ctx.pathParam("loadNumber");
+        String equipment = ctx.pathParam("equipment");
+        String runRecipe = ctx.pathParam("runRecipe");
+
+        JDBC jdbc = new JDBC();
+        ArrayList<RunDetails> dataList = jdbc.getData(operatorName, loadNumber, equipment, runRecipe);
+
+        ObjectMapper jMapper = new ObjectMapper();
+        ObjectNode data = jMapper.createObjectNode();
+
+        // Matches
+        ArrayNode cureArrayNode = jMapper.createArrayNode();
+        
+        for (RunDetails runDetails : dataList) {
+            ObjectNode cureNode = jMapper.createObjectNode();
+
+            cureNode.put("fileName", runDetails.fileName);
+            cureNode.put("filePath", runDetails.filePath);
+            cureNode.put("loadNumber", runDetails.loadNumber);
+            cureNode.put("equipment", runDetails.equipment);
+            cureNode.put("runRecipe", runDetails.runRecipe);
+            cureNode.put("runStart", runDetails.runStart);
+            cureNode.put("runEnd", runDetails.runEnd);
+            cureNode.put("runDuration", runDetails.runDuration);
+            cureNode.put("fileLength", runDetails.fileLength);
+            cureNode.put("operatorName", runDetails.operatorName);
+            cureNode.put("exportControl", runDetails.exportControl);
+            cureNode.put("runDetails", runDetails.ip);
+
+            cureArrayNode.add(cureNode);;
+        }
+
+        data.set("values", cureArrayNode);
+
+        try {
+            ctx.json(data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     };
 
     public static Handler fetchMatchingOperatorNames = ctx -> {

@@ -278,9 +278,14 @@
     transform: translate(-50%, calc(-50% - 55px));
     width: 800px;
     height: 500px;
-    padding: 10px;
+    padding: 10px 50px;
 }
 
 .results-modal h2 {
     color: var(--primary-background-color);
+}
+
+.modal-data {
+    margin: 20px 0px;
+    font-size: 24px;
 }

@@ -45,6 +45,12 @@ h2 {
     text-align: center;
 }
 
+h3 {
+    font-weight: 300;
+    font-size: 30px;
+    text-align: center;
+}
+
 p {
     margin: 10px 0;
     font-family: var(--secondary-font-family);
@@ -107,6 +113,7 @@ a {
     box-shadow: 0px 2px 6px var(--shadow-color);
     border: none;
     cursor: pointer;
+    
 }
 
 /* Animations */
