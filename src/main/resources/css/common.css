@@ -98,6 +98,28 @@ a {
     color: var(--accent-color);
 }
 
+/* Navigation */
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100vw) scaleX(-1) rotate(15deg);
+    }
+
+    100% {
+        transform: translateX(0) scaleX(-1) rotate(15deg);
+    }
+}
+
+.nav img {
+    position: absolute;
+    width: 150px;
+    left: 30px;
+    top: 30px;
+    transform: scaleX(-1) rotate(15deg);
+    animation: slideInFromRight 2s ease-out;
+    cursor: pointer;
+}
+
 /* Button */
 
 .btn {
@@ -114,48 +136,6 @@ a {
     border: none;
     cursor: pointer;
 
-}
-
-/* Animations */
-
-@keyframes slideInFromLeft {
-    0% {
-        transform: translateX(-100vw);
-    }
-
-    100% {
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideInFromRight {
-    0% {
-        transform: translateX(100vw);
-    }
-
-    100% {
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideInFromTop {
-    0% {
-        transform: translateY(-100vh);
-    }
-
-    100% {
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideInFromBottom {
-    0% {
-        transform: translateY(100vh);
-    }
-
-    100% {
-        transform: translateX(0);
-    }
 }
 
 /* Table Format */
