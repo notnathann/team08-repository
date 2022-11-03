@@ -70,7 +70,7 @@ public class SearchController {
         String partial = ctx.pathParam("partial");
 
         JDBC jdbc = new JDBC();
-        ArrayList<Integer> loadNumbersList = jdbc.getMatchingLoadNumbers(partial);
+        ArrayList<String> loadNumbersList = jdbc.getMatchingLoadNumbers(partial);
 
         ObjectMapper jMapper = new ObjectMapper();
         ObjectNode data = jMapper.createObjectNode();
@@ -78,7 +78,7 @@ public class SearchController {
         // Matches
         ArrayNode loadNumbersNode = jMapper.createArrayNode();
         
-        for (Integer loadNumber : loadNumbersList) {
+        for (String loadNumber : loadNumbersList) {
             loadNumbersNode.add(loadNumber);
         }
 

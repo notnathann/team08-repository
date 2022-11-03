@@ -43,7 +43,10 @@ public class JDBC {
             // Process results
             while (results.next()) {
                 String name = results.getString("OperatorName");
-                operatorNames.add(name);
+
+                if (!operatorNames.contains(name)) {
+                    operatorNames.add(name);
+                }
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -63,9 +66,9 @@ public class JDBC {
         return operatorNames;
     }
 
-    public ArrayList<Integer> getMatchingLoadNumbers(String partial) {
+    public ArrayList<String> getMatchingLoadNumbers(String partial) {
         // Array of lgas to return
-        ArrayList<Integer> loadNumbers = new ArrayList<>();
+        ArrayList<String> loadNumbers = new ArrayList<>();
 
         // JDBC
         Connection connection = null;
@@ -93,8 +96,11 @@ public class JDBC {
 
             // Process results
             while (results.next()) {
-                Integer loadNumber = results.getInt("LoadNumber");
-                loadNumbers.add(loadNumber);
+                String loadNumber = results.getString("LoadNumber");
+                
+                if (!loadNumbers.contains(loadNumber)) {
+                    loadNumbers.add(loadNumber);
+                }
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -145,7 +151,10 @@ public class JDBC {
             // Process results
             while (results.next()) {
                 String equipment = results.getString("Equipment");
-                equipmentList.add(equipment);
+                
+                if (!equipmentList.contains(equipment)) {
+                    equipmentList.add(equipment);
+                }
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -196,7 +205,10 @@ public class JDBC {
             // Process results
             while (results.next()) {
                 String runRecipe = results.getString("RunRecipe");
-                runRecipes.add(runRecipe);
+                
+                if (!runRecipes.contains(runRecipe)) {
+                    runRecipes.add(runRecipe);
+                }
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
