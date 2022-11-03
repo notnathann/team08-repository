@@ -13,6 +13,7 @@ import group08.boeing.search.SearchController;
  * Running class as java application to start the
  * Javalin HTTP Server and our web application.
  */
+
 public class App {
 
     public static final int JAVALIN_PORT = 7001;
