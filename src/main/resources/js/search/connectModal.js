@@ -90,6 +90,8 @@ function showResults() {
             $(searchResultAnchor).attr("data-value", JSON.stringify(data.values[i]));
             modal_contents.append(searchResultDiv);
             localStorage.setItem("data", JSON.stringify(data.values[i]))
+
+            $(searchResultAnchor).click(updateLocalStorage);
         }
     });
 
@@ -109,4 +111,10 @@ function hideResults() {
 
     modal.css('display', 'none');
     modal.removeClass("modal-opacity-anim");
+}
+
+
+function updateLocalStorage() {
+    data = $(this).attr("data-value");
+    localStorage.setItem("data", data);
 }
