@@ -227,4 +227,93 @@ public class JDBC {
         System.out.println(String.format("Retrieved %d Run Recipes", runRecipes.size()));
         return runRecipes;
     }
+
+    public ArrayList<RunDetails> getData(String operatorName, String loadNumber, String equipment, String runRecipe) {
+        // Array of lgas to return
+        ArrayList<RunDetails> data = new ArrayList<>();
+
+        // JDBC
+        Connection connection = null;
+
+        try {
+            // Connect to database
+            connection = DriverManager.getConnection(DATABASE);
+
+            // Execute a query and get the result
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(100);
+
+            String query = String.format("SELECT * FROM RUN_DETAILS");
+
+            String filterQuery = "";
+
+            if (!operatorName.equals("null")) {
+                filterQuery += "\n    WHERE RUN_DETAILS.OperatorName = \"" + operatorName + "\"";
+            }
+
+            if (!loadNumber.equals("null")) {
+                if (filterQuery.isEmpty()) {
+                    filterQuery += "\n    WHERE RUN_DETAILS.LoadNumber = \"" + loadNumber + "\"";
+                } else {
+                    filterQuery += "\n AND RUN_DETAILS.LoadNumber = \"" + loadNumber + "\"";
+                }
+            }
+
+            if (!equipment.equals("null")) {
+                if (filterQuery.isEmpty()) {
+                    filterQuery += "\n    WHERE RUN_DETAILS.Equipment = \"" + equipment + "\"";
+                } else {
+                    filterQuery += "\n AND RUN_DETAILS.Equipment = \"" + equipment + "\"";
+                }
+            }
+
+            if (!runRecipe.equals("null")) {
+                if (filterQuery.isEmpty()) {
+                    filterQuery += "\n    WHERE RUN_DETAILS.RunRecipe = \"" + runRecipe + "\"";
+                } else {
+                    filterQuery += "\n AND RUN_DETAILS.RunRecipe = \"" + runRecipe + "\"";
+                }
+            }
+
+            query += filterQuery + ";";
+            System.out.println(query);
+
+            ResultSet results = statement.executeQuery(query);
+
+            // Process results
+            while (results.next()) {
+                RunDetails runDetails = new RunDetails();
+
+                runDetails.fileName = results.getString("FileName");
+                runDetails.filePath = results.getString("FilePath");
+                runDetails.loadNumber = results.getString("LoadNumber");
+                runDetails.equipment = results.getString("Equipment");
+                runDetails.runRecipe = results.getString("RunRecipe");
+                runDetails.runStart = results.getString("RunStart");
+                runDetails.runEnd = results.getString("RunEnd");
+                runDetails.runDuration = results.getString("RunDuration");
+                runDetails.fileLength = results.getString("FileLength");
+                runDetails.operatorName = results.getString("OperatorName");
+                runDetails.exportControl = results.getString("ExportControl");
+                runDetails.ip = results.getString("IP");
+                
+                data.add(runDetails);
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        } finally {
+            try {
+                // Close connection if one exists
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // Connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        System.out.println(String.format("Retrieved %d Data Rows", data.size()));
+        return data;
+    }
 }

@@ -3,6 +3,7 @@ package group08.boeing;
 import io.javalin.Javalin;
 import io.javalin.core.util.RouteOverviewPlugin;
 
+import group08.boeing.data.DataController;
 import group08.boeing.index.IndexController;
 import group08.boeing.search.SearchController;
 
@@ -52,6 +53,11 @@ public class App {
         app.get(SearchController.LOAD_NUMBER_SEARCH_REQUEST, SearchController.fetchMatchingLoadNumbers);
         app.get(SearchController.EQUIPMENT_SEARCH_REQUEST, SearchController.fetchMatchingEquipment);
         app.get(SearchController.RUN_RECIPE_SEARCH_REQUEST, SearchController.fetchMatchingRunRecipes);
+
+        app.get(SearchController.DATA_REQUEST, SearchController.fetchData);
+
+        // Get - Data
+        app.get(DataController.HTML_REQUEST, DataController.servePage);
 
         // POST - Index
         app.post(IndexController.JSON_POST_REQUEST, IndexController.parseJSON);
